@@ -31,7 +31,7 @@ def requestTaskName():
 #taskName = requestTaskName()
 
 def requestTaskTime():
-    timeUnit= str(input("Estimate how long you think it will take to complete the task. \n First, specify if your estimate is in hours, minutes or number of Pomodoro sessions. \n For hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
+    timeUnit= str(input("Estimate how long you think it will take to complete the task. \nFirst, specify if your estimate is in hours, minutes or number of Pomodoro sessions. \nFor hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
     validTimeUnits = ['h','H','M','m','P','p']
 
     while timeUnit not in validTimeUnits:
@@ -52,8 +52,7 @@ def requestTaskTime():
         return pomodoroNo
     
     else:
-        taskTime = int(input("Enter your estimate of how long it will take to complete the task in number of POMODORO sessions."))
-        pomodoroNo = taskTime 
+        pomodoroNo = int(input("Enter your estimate of how long it will take to complete the task in number of POMODORO sessions."))
         return pomodoroNo
     
 
@@ -87,7 +86,7 @@ unsortedPlans = [['#', 'Task', 'Repetitions','Priority']]
 
 
 def appendTask(new_task):
-    for r in range(new_task[3]):
+    for r in range(new_task[2]):
         unsortedPlans.append(new_task)
     print(unsortedPlans)
 
