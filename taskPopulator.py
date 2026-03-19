@@ -33,7 +33,13 @@ def requestTaskName():
 def requestTaskTime():
     timeUnit= str(input("Estimate how long you think it will take to complete the task. \nFirst, specify if your estimate is in hours, minutes or number of Pomodoro sessions. \nFor hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
     validTimeUnits = ['h','H','M','m','P','p']
-
+    def isNumber(s):
+        try:
+            float(s)
+            return True
+        except ValueError:
+            return False
+    #need to fix a bug which results in a letter going in index 2 if the user first enters a letter by accident, need to reset it
     while timeUnit not in validTimeUnits:
         print("The time unit you entered is in valid.")
         timeUnit = str(input("For hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
@@ -41,19 +47,28 @@ def requestTaskTime():
 
     if timeUnit == 'H' or timeUnit == 'h':
         taskTime = float(input("Enter your estimate of how long it will take to complete the task in HOURS."))
+        while isNumber(taskTime) == False:
+            taskTime = float(input("You did not enter a number.\nPlease try again to enter your estimate of how long it will take to complete the task in HOURS."))
+            return isNumber(taskTime)
         pomodoroNo = taskTime * 2.4
         pomodoroNo = int(round(pomodoroNo, 0))
         return pomodoroNo
 
     elif timeUnit == 'M' or timeUnit == 'm':
         taskTime = int(input("Enter your estimate of how long it will take to complete the task in MINUTES."))
+        while isNumber(taskTime) == False:
+            taskTime = float(input("You did not enter a number.\nPlease try again to enter your estimate of how long it will take to complete the task in MINUTES."))
+            return isNumber(taskTime)
         pomodoroNo = taskTime / 25
         pomodoroNo = int(round(pomodoroNo, 0))
         return pomodoroNo
     
-    else:
-        pomodoroNo = int(input("Enter your estimate of how long it will take to complete the task in number of POMODORO sessions."))
-        return pomodoroNo
+    elif timeUnit == 'p' or timeUnit == 'P':
+        pomodoroNo = (input("Enter your estimate of how long it will take to complete the task in number of POMODORO sessions."))
+        while isNumber(pomodoroNo) == False:
+            pomodoroNo = float(input("You did not enter a number.\nPlease try again to enter your estimate of how long it will take to complete the task in MINUTES."))
+            return isNumber(pomodoroNo)
+        return int(pomodoroNo)
     
 
 #pomodoroNo = requestTaskTime()
@@ -85,10 +100,18 @@ def insertAtribute(taskName, pomodoroNo, taskPriority):
 unsortedPlans = [['#', 'Task', 'Repetitions','Priority']]
 
 
-def appendTask(new_task):
-    for r in range(new_task[2]):
-        unsortedPlans.append(new_task)
-    print(unsortedPlans)
+#def appendTaskinPlace(new_task):
+    #for r in range(new_task[2]):
+        #unsortedPlans.append(new_task)
+    #return unsortedPlans
+
+def appendTask(unsortedPlans,new_task):
+    for _ in range(new_task[2]):
+        unsortedPlans += [new_task]
+    return unsortedPlans 
+   
+def sortByPriority(unsortedPlans):
+    return sorted(unsortedPlans, key=lambda x: x[3])
 
 
 
