@@ -97,7 +97,7 @@ def insertAtribute(taskName, pomodoroNo, taskPriority):
 #the insert attribute should occur in a loop?
 #works up to here
 
-unsortedPlans = [['#', 'Task', 'Repetitions','Priority']]
+
 
 
 #def appendTaskinPlace(new_task):
