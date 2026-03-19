@@ -92,27 +92,18 @@ def insertAtribute(taskName, pomodoroNo, taskPriority):
     new_task[2] = pomodoroNo
     new_task[3] = taskPriority
     return new_task
-#print(new_task) now redundant since the append task will print the output
-    
-#the insert attribute should occur in a loop?
-#works up to here
-
-
-
-
-#def appendTaskinPlace(new_task):
-    #for r in range(new_task[2]):
-        #unsortedPlans.append(new_task)
-    #return unsortedPlans
 
 def appendTask(unsortedPlans,new_task):
     for _ in range(new_task[2]):
-        unsortedPlans += [new_task]
+        unsortedPlans += [new_task.copy()]
     return unsortedPlans 
    
 def sortByPriority(unsortedPlans):
     return sorted(unsortedPlans, key=lambda x: x[3])
 
-
+def assignRanks(sortedPlans):
+    for i in range(len(sortedPlans)):
+        sortedPlans[i][0] = i + 1
+        
 
 
