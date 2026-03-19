@@ -9,6 +9,7 @@ if __name__ == "__main__":
     
 
     instructions.showInstructions()
+    unsortedPlans = []
     Adding = True
 
     while Adding:
@@ -16,14 +17,18 @@ if __name__ == "__main__":
         pomodoroNo = taskPopulator.requestTaskTime()
         taskPriority = taskPopulator.requestTaskPriority()
         new_task = taskPopulator.insertAtribute(taskName, pomodoroNo, taskPriority)
-        taskPopulator.appendTask(new_task)
+        taskPopulator.appendTask(unsortedPlans, new_task)
         userIsDone = str(input("To add another tasks, press enter 'C'.\nTo stop adding tasks and generate the plan, enter 'Q'."))
-        if userIsDone == 'c':
+        if userIsDone == 'c' or userIsDone == 'C':
             Adding = True
         else:
             Adding = False
-       
-        
+    
+    sortedPlans = taskPopulator.sortByPriority(unsortedPlans)
+    print(sortedPlans)
 
+    #sortedPlan = taskPopulator.sortByPriority(unsortedPlans)
+   #1
+   
 
     
