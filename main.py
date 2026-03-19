@@ -6,6 +6,7 @@ import array as arr
 if __name__ == "__main__":
     import taskPopulator
     import instructions
+    import formatter
     
 
     instructions.showInstructions()
@@ -23,9 +24,12 @@ if __name__ == "__main__":
             Adding = True
         else:
             Adding = False
-    
+    print("These are the raw unfiltered plans. In later versions this will be hidden and not printed until it is formatted as a table.")
     sortedPlans = taskPopulator.sortByPriority(unsortedPlans)
+    taskPopulator.assignRanks(sortedPlans)
     print(sortedPlans)
+    formatter.planHeader()
+
 
     #sortedPlan = taskPopulator.sortByPriority(unsortedPlans)
    #1
