@@ -19,7 +19,7 @@ if __name__ == "__main__":
         taskPriority = taskPopulator.requestTaskPriority()
         new_task = taskPopulator.insertAtribute(taskName, pomodoroNo, taskPriority)
         taskPopulator.appendTask(unsortedPlans, new_task)
-        userIsDone = str(input("To add another tasks, press enter 'C'.\nTo stop adding tasks and generate the plan, enter 'Q'."))
+        userIsDone = str(input("To add another tasks, press enter 'C'.\nTo stop adding tasks and generate the plan, enter 'G'."))
         if userIsDone == 'c' or userIsDone == 'C':
             Adding = True
         else:
@@ -28,7 +28,11 @@ if __name__ == "__main__":
     sortedPlans = taskPopulator.sortByPriority(unsortedPlans)
     taskPopulator.assignRanks(sortedPlans)
     print(sortedPlans)
-    formatter.planHeader()
+    #header = formatter.planHeader()
+    #print(header)
+    formatted_plan = formatter.fillTable(sortedPlans)
+    print(formatted_plan)
+
 
 
     #sortedPlan = taskPopulator.sortByPriority(unsortedPlans)
