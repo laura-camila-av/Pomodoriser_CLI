@@ -33,17 +33,19 @@ def requestTaskName():
 def requestTaskTime():
     timeUnit= str(input("Estimate how long you think it will take to complete the task. \nFirst, specify if your estimate is in hours, minutes or number of Pomodoro sessions. \nFor hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
     validTimeUnits = ['h','H','M','m','P','p']
+    
     def isNumber(s):
         try:
             float(s)
             return True
         except ValueError:
             return False
-    #need to fix a bug which results in a letter going in index 2 if the user first enters a letter by accident, need to reset it
-    while timeUnit not in validTimeUnits:
+        
+    while timeUnit not in validTimeUnits or isNumber(timeUnit):
         print("The time unit you entered is in valid.")
-        timeUnit = str(input("For hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
-        return timeUnit
+        timeUnit = (input("For hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
+    
+    #need to fix a bug which results in a letter going in index 2 if the user first enters a letter by accident, need to reset it
 
     if timeUnit == 'H' or timeUnit == 'h':
         taskTime = float(input("Enter your estimate of how long it will take to complete the task in HOURS."))
