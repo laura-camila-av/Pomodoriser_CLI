@@ -14,7 +14,7 @@ def taskDivider():
     """
     )
 def getStartTime():
-    startTime = input("Enter the time in HH:MM format:")
+    startTime = input("Enter your desired plan start time in HH:MM format:")
     return datetime.strptime(startTime, "%H:%M")
     startTime = getStartTime()
 
