@@ -1,16 +1,10 @@
-def insertAtribute(taskName, pomodoroNo, taskPriority):
-    new_task = list(range(5))
-    new_task[1] = taskName
-    new_task[2] = pomodoroNo
-    new_task[3] = taskPriority
-    print(new_task)#function to check the input doesn't exceed the maximum length capacity (to protect neat table formatting)
+#taskPopulator.py
+def getPlanLength():
+    planLength = input("How long, in number of pomoodoro sessions would you like this plan to be?\nNote that pomodoro sprint is 30 minutes long.")
+    while isNumber(planLength) == False:
+        planLength = input("The value you entered is invalid. It must be a number greater than zero.")
+    return int(planLength)
 
-#def createTask():
-    #Task created with placeholder values
-
-    #Index 3 is for priority, Index 4 is for task length
-    #new_task = list(range(5))
-    #return new_task
 
 def checkInputLength(field):
     if len(field) > 50:
@@ -28,7 +22,7 @@ def requestTaskName():
         taskName = str(input("Enter a brief description of the task you wish to complete then click enter."))
         exceedsMaxLength = checkInputLength(taskName)
     return taskName
-#taskName = requestTaskName()
+
 def isNumber(s):
     try:
         float(s)
@@ -43,14 +37,12 @@ def requestTaskTime():
     while timeUnit not in validTimeUnits or isNumber(timeUnit):
         print("The time unit you entered is in valid.")
         timeUnit = (input("For hours, enter H, for minutes, enter M and for Pomodoro (25 minutes) enter P."))
-    
-    #need to fix a bug which results in a letter going in index 2 if the user first enters a letter by accident, need to reset it
-
+  
     if timeUnit == 'H' or timeUnit == 'h':
         taskTime = (input("Enter your estimate of how long it will take to complete the task in HOURS."))
         while isNumber(taskTime) == False:
             taskTime = (input("You did not enter a number.\nPlease try again to enter your estimate of how long it will take to complete the task in HOURS."))
-        return taskTime
+        
         pomodoroNo = taskTime * 2.4
         pomodoroNo = int(round(pomodoroNo, 0))
         return pomodoroNo
@@ -59,7 +51,7 @@ def requestTaskTime():
         taskTime = (input("Enter your estimate of how long it will take to complete the task in MINUTES."))
         while isNumber(taskTime) == False:
             taskTime = (input("You did not enter a number.\nPlease try again to enter your estimate of how long it will take to complete the task in MINUTES."))
-        return taskTime
+        
         pomodoroNo = taskTime / 25
         pomodoroNo = int(round(pomodoroNo, 0))
         return pomodoroNo
@@ -77,9 +69,6 @@ def requestTaskPriority():
         taskPriority = (input("Your rating must be between 1 and 5. If you do not wish do give it a priority, enter 5."))
     return int(taskPriority)
 
-#taskPriority = requestTaskPriority()
-
-
 #simplify this function as you progress by making it like this insertAtribute(field,index)
 def insertAtribute(taskName, pomodoroNo, taskPriority):
     #new_task = createTask()
@@ -89,11 +78,6 @@ def insertAtribute(taskName, pomodoroNo, taskPriority):
     new_task[2] = pomodoroNo
     new_task[3] = taskPriority
     return new_task
-
-#def getDuration():
-    #plan
-
-
 
 def appendTask(unsortedPlans,new_task):
     for _ in range(new_task[2]):
